@@ -90,7 +90,8 @@ jobs:
             }
             await core.summary
               .addTable([
-                [{data: 'version', header: true}, {data: 'duration', header: true}]] + matchedOutputs) 
+                [{data: 'version', header: true}, {data: 'duration', header: true}] + matchedOutputs
+                ]) 
   build150: 
       runs-on: ubuntu-latest
       outputs:
