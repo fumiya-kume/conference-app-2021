@@ -57,5 +57,5 @@ jobs:
             const data = process.env["result"]
             console.log(data)
             data.forEach(element => {
-              await exec.exec('echo '|${{ matrix.version }}|${{ matrix.os }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY')
+              exec.exec('echo '|${{ matrix.version }}|${{ matrix.os }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY')
             })
