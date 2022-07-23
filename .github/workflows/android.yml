@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [1.5.0, 1.5.10, 1.5.20, 1.5.21]
+        version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30]
     env:
       version: ${{ matrix.version }}
     steps:  
