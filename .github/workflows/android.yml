@@ -85,10 +85,7 @@ jobs:
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
-
-              if (outputs.status === query.status && isSubset(outputs.matrix, query.matrix)) {
-                matchedOutputs.push(outputs)
-              }
+              matchedOutputs.push(outputs)
             }
 
             console.log(matchedOutputs)
