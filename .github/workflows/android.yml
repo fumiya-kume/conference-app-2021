@@ -46,7 +46,7 @@ jobs:
             const id = "${{ steps.generate-unique-id.outputs.result }}"
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
-            const exportedValues = ${{ steps.build.outputs.duration }}
+            const exportedValues = "${{ steps.build.outputs.duration }}"
             const outputs = { matrix, status, id, exportedValues }
             fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
       - if: always()
