@@ -65,6 +65,7 @@ jobs:
           script: |
             const fs = require('fs')
             const path = require('path')
+            const core = require('@actions/core')
 
             const isSubset = (parent, child) => {
               return Object.keys(child)
