@@ -39,4 +39,4 @@ jobs:
         name: Build with Gradle
         run: |
           RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
-          echo '|${{ matrix.version }}|$RESULT|' >> $GITHUB_STEP_SUMMARY
+          echo '|${{ matrix.version }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY
