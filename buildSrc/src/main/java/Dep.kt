@@ -56,7 +56,7 @@ object Dep {
         val bom = "org.jetbrains.kotlin:kotlin-bom:${System.getenv("version") ?: "1.5.31"}"
 
         // bom import does not working...
-        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${System.getenv("version") ?: "1.5.31"}"
         const val serializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:1.5.31"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib"
         const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31"
