@@ -51,7 +51,7 @@ jobs:
             const status = "${{ job.status }}"
             const exportedValues = "${{ steps.build.outputs.duration }}"
             const outputs = { matrix, status, id, exportedValues }
-            if(${{ runner.os }} == "Windows"){
+            if("${{ runner.os }}" == "Windows"){
               fs.writeFileSync("${{ github.workspace }}\outputs.txt", JSON.stringify(outputs))
             }else{
               fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
