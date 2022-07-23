@@ -37,7 +37,7 @@ jobs:
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
 
-	          # const exportedValues = ${{ env.RESULT }}
+	    const exportedValues = ${{ env.RESULT }}
 
             const outputs = { matrix, status, id, exportedValues }
 
