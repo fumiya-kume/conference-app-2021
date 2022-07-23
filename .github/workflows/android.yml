@@ -33,9 +33,8 @@ jobs:
             const id = "${{ steps.generate-unique-id.outputs.result }}"
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
-            
 
-	          const exportedValues = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //');
+	          const exportedValues = `'./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //`
 
             const outputs = { matrix, status, id, exportedValues }
 
