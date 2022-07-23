@@ -40,7 +40,6 @@ jobs:
             const data = process.env["result"]
             data["${{ matrix.version }}-${{ matrix.os}}"] = result
             core.exportVariable('result' ,data)
-            # process.env["result"] = data
   report:
     needs: build
     runs-on: ubuntu-latest
