@@ -48,7 +48,7 @@ jobs:
             const status = "${{ job.status }}"
             const exportedValues = "${{ steps.build.outputs.duration }}"
             const outputs = { matrix, status, id, exportedValues }
-            await fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
+            fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
       - if: always()
         uses: actions/upload-artifact@v2
         with:
