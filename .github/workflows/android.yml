@@ -65,15 +65,8 @@ jobs:
           script: |
             const fs = require('fs')
             const path = require('path')
-
-            const isSubset = (parent, child) => {
-              return Object.keys(child)
-                .every(k => (k in parent) && (child[k] === parent[k]))
-            }
-
             const directory = path.resolve('./matrix-job-outputs')
             const matchedOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
-
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
