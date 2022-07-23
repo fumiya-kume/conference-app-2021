@@ -10,8 +10,10 @@ jobs:
   build:
     strategy:
       matrix:
-        version: ["1.5", "1.6", "1.7"]
+        version: [1.5.0, 1.6.0, 1.7.0]
     runs-on: ubuntu-latest
+    outputs:
+      output_${{ matrix.version }}: ${{ steps.build.oututs.test }}
     steps:
     - uses: actions/checkout@v3
     - name: set up JDK 11
@@ -22,5 +24,6 @@ jobs:
         cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
+    - id: build
+      name: Build with Gradle
       run: ./gradlew build
