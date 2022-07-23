@@ -7,6 +7,41 @@ on:
     branches: [ "main" ]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [1.5.0, 1.5.10]
+    env:
+      version: ${{ matrix.version }}
+    steps:  
+      - if: always()
+        run: echo '${{ toJSON(matrix) }}' > ./matrix.txt
+      - if: always()
+        id: generate-unique-id
+        run: echo '::set-output name=result::${{ hashFiles('./matrix.txt') }}'
+     - if: always()
+        id: generate-outputs
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const fs = require('fs')
+
+            const id = "${{ steps.generate-unique-id.outputs.result }}"
+            const matrix = ${{ toJSON(matrix) }}
+            const status = "${{ job.status }}"
+	          const exportedValues = eval("./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'")
+
+            const outputs = { matrix, status, id, exportedValues }
+
+            fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
+      - if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: outputs-${{ steps.generate-unique-id.outputs.result }}
+          path: ${{ github.workspace }}/outputs.txt
   build150: 
       runs-on: ubuntu-latest
       outputs:
