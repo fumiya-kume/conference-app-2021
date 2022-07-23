@@ -39,7 +39,8 @@ jobs:
             const result = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e "s/^[^dm"]* //"')
             const data = process.env["result"]
             data["${{ matrix.version }}-${{ matrix.os}}"] = result
-            core.exportVariable(data)
+            # core.exportVariable(data)
+            process.env["result"] = data
   report:
     needs: build
     runs-on: ubuntu-latest
