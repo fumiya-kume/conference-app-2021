@@ -153,6 +153,8 @@ jobs:
         name: Build with Gradle
         run: |
           RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          echo '$RESULT' >> $GITHUB_STEP_SUMMARY
+          echo "$RESULT" >> $GITHUB_STEP_SUMMARY
           echo "::set-output name=duration::${RESULT}"
   summary:
     runs-on: ubuntu-latest
