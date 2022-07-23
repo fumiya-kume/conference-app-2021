@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30, 1.5.31, 1.5.32, 1.6.0, 1.6.10, 1.6.20, 1.6.21]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     env:
       version: ${{ matrix.version }}
     steps:  
