@@ -19,7 +19,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30, 1.5.31, 1.5.32]
+        # version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30, 1.5.31, 1.5.32]
+        version: [1.5.0, 1.5.10]
         os: [ubuntu_latest]
     needs: summary
     runs-on: ubuntu_latest
