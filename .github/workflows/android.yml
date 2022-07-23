@@ -27,7 +27,7 @@ jobs:
           echo "RESULT=./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'" >> $GITHUB_ENV
       - if: always()
         id: generate-outputs
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs')
