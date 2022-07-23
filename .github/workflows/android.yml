@@ -26,7 +26,7 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   build1510: 
       runs-on: ubuntu-latest
@@ -47,7 +47,7 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   build1520: 
       runs-on: ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   build1521: 
       runs-on: ubuntu-latest
@@ -89,7 +89,7 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   build1530: 
       runs-on: ubuntu-latest
@@ -110,7 +110,7 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   build1531: 
       runs-on: ubuntu-latest
@@ -131,7 +131,7 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   build1532: 
       runs-on: ubuntu-latest
@@ -152,9 +152,7 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
-          echo '$RESULT' >> $GITHUB_STEP_SUMMARY
-          echo "$RESULT" >> $GITHUB_STEP_SUMMARY
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   summary:
     runs-on: windows-latest
