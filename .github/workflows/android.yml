@@ -38,7 +38,7 @@ jobs:
         name: Build with Gradle
         shell: bash
         run: |
-          RESULT=`./gradlew bundleDebug bundleRelease --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
+          RESULT=`./gradlew bundleDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
       - if: always()
         id: generate-outputs
