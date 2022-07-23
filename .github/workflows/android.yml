@@ -12,8 +12,8 @@ jobs:
       steps:
         - name: make summary
           run: |
-            echo '|version|result|' >> $GITHUB_STEP_SUMMARY
-            echo '|---|---|' >> $GITHUB_STEP_SUMMARY
+            echo '|version|os|result|' >> $GITHUB_STEP_SUMMARY
+            echo '|---|---|---|' >> $GITHUB_STEP_SUMMARY
   build:
     runs-on: ${{ matrix.os }}
     continue-on-error: true
@@ -39,4 +39,4 @@ jobs:
         name: Build with Gradle
         run: |
           RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
-          echo '|${{ matrix.version }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY
+          echo '|${{ matrix.version }}|${{ matrix.os }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY
