@@ -72,15 +72,7 @@ jobs:
                 .every(k => (k in parent) && (child[k] === parent[k]))
             }
 
-            const query = {
-              matrix: {
-                os: 'ubuntu-latest',
-                "rbi-version": '3.0'
-              },
-              status: 'success'
-            }
-
-            const directory = path.resolve('./matrix-job-outputs')
+            const directory = path.resolve('./build-outputs')
             const matchedOutputs = []
 
             for (const dirName of fs.readdirSync(directory)) {
