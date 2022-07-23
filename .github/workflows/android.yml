@@ -74,13 +74,21 @@ jobs:
             const directory = path.resolve('./matrix-job-outputs')
             const matchedOutputs = []
 
-            await exec.exec('echo "|version|result|" >> $GITHUB_STEP_SUMMARY')
-            await exec.exec('echo "|---|---|" >> $GITHUB_STEP_SUMMARY')
+            await core.summary
+              .addRaw("|version|result|")
+              .addRaw("|---|---|")
+              .write()
+
+            # await exec.exec('echo "|version|result|" >> $GITHUB_STEP_SUMMARY')
+            # await exec.exec('echo "|---|---|" >> $GITHUB_STEP_SUMMARY')
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
-              const result = "|${outputs.matrix.version}|${outputs.exportedValues}|"
-              await exec.exec('echo ${result}', ['>>', '$GITHUB_STEP_SUMMARY'])
+              # const result = 
+              # await exec.exec('echo ${result}', ['>>', '$GITHUB_STEP_SUMMARY'])
+              await core.summary
+                .addRaw("|${outputs.matrix.version}|${outputs.exportedValues}|")
+                .write()
             }
   build150: 
       runs-on: ubuntu-latest
