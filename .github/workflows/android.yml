@@ -70,15 +70,37 @@ jobs:
             const path = require('path')
             const directory = path.resolve('./matrix-job-outputs')
             const matchedOutputs = [[{data: 'version', header:true}, {data: 'os', header:true}, {data: 'result', header: true}]]
+
+            const linuxOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
+            const macosOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
+            const windowsOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
+
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
               matchedOutputs.push([outputs.matrix.version, outputs.matrix.os, outputs.exportedValues])
+              if(outputs.matrix.os == 'ubuntu-latest'){
+                linuxOutputs.push([outputs.matrix.version, outputs.exportedValues])
+              }else if(outputs.matrix.os == 'macos-latest'){
+                macosOutputs.push([outputs.matrix.version, outputs.exportedValues])
+              }else if(outputs.matrix.os == 'windows-latest'){
+                windowsOutputs.push([outputs.matrix.version, outputs.exportedValues])
             }
             await core.summary
               .addTable(matchedOutputs)
               .write()
 
+            await core.summary
+              .addTable(linuxOutputs)
+              .write()
+
+            await core.summary
+              .addTable(macosOutputs)
+              .write()
+
+            await core.summary
+              .addTable(windowsOutputs)
+              .write()
 
   build150: 
       runs-on: ubuntu-latest
