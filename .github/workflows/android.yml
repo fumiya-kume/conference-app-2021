@@ -72,20 +72,18 @@ jobs:
             }
 
             const directory = path.resolve('./matrix-job-outputs')
-            const matchedOutputs = []
-
-            await core.summary
-              .addRaw('|version|result|')
-              .addRaw('|---|---|')
-              .write()
+            const matchedOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
 
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
-              await core.summary
-                .addRaw('|${outputs.matrix.version}|${outputs.exportedValues}|')
-                .write()
+              matchedOutputs.push([outputs.matrix.version, outputs.exportedValues])
             }
+            await core.summary
+              .addTable(matchedOutputs)
+              .write()
+
+
   build150: 
       runs-on: ubuntu-latest
       outputs:
