@@ -10,10 +10,7 @@ jobs:
   summary:
       runs-on: ubuntu-latest
       steps:
-        - name: make summary
-          run: |
-            echo '|version|os|result|' >> $GITHUB_STEP_SUMMARY
-            echo '|---|---|---|' >> $GITHUB_STEP_SUMMARY
+
   build:
     needs: summary
     strategy:
@@ -53,6 +50,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: make summary
+        run: |
+          echo '|version|os|result|' >> $GITHUB_STEP_SUMMARY
+          echo '|---|---|---|' >> $GITHUB_STEP_SUMMARY
       - if: always()
         id: generate-outputs
         uses: actions/github-script@v6
@@ -60,3 +61,6 @@ jobs:
           script: |
             const data = process.env["result"]
             console.log(data)
+            data.forEach(element => {
+              await exec.exec('echo '|${{ matrix.version }}|${{ matrix.os }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY')
+            })
