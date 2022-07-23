@@ -28,7 +28,6 @@ jobs:
         with:
           script: |
             const fs = require('fs')
-            const exec = require('@actions/exec')
             const id = "${{ steps.generate-unique-id.outputs.result }}"
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
