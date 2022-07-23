@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       version: ${{ matrix.version }}
+      result: {}
     steps:  
       - uses: actions/checkout@v3
       - name: set up JDK 11
