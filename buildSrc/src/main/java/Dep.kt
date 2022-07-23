@@ -53,7 +53,7 @@ object Dep {
     }
 
     object Kotlin {
-        const val bom = "org.jetbrains.kotlin:kotlin-bom:1.5.31"
+        val bom = "org.jetbrains.kotlin:kotlin-bom:${System.getenv("version") ?: "1.5.31"}"
 
         // bom import does not working...
         const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
