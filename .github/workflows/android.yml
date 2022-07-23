@@ -31,6 +31,11 @@ jobs:
       - if: always()
         id: generate-unique-id
         run: echo '::set-output name=result::${{ hashFiles('./matrix.txt') }}'
+      - id: build
+        name: Build with Gradle
+        run: |
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
+          echo "::set-output name=duration::${RESULT}"
       - if: always()
         id: generate-outputs
         uses: actions/github-script@v6
@@ -40,7 +45,7 @@ jobs:
             const id = "${{ steps.generate-unique-id.outputs.result }}"
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
-            const exportedValues = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e "s/^[^dm"]* //"')
+            const exportedValues = ${steps.build.outputs.duration}
             const outputs = { matrix, status, id, exportedValues }
             fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
       - if: always()
