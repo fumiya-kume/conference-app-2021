@@ -65,7 +65,6 @@ jobs:
           script: |
             const fs = require('fs')
             const path = require('path')
-            const core = require('@actions/core')
 
             const isSubset = (parent, child) => {
               return Object.keys(child)
@@ -76,19 +75,15 @@ jobs:
             const matchedOutputs = []
 
             await core.summary
-              .addRaw("|version|result|")
-              .addRaw("|---|---|")
+              .addRaw('|version|result|')
+              .addRaw('|---|---|')
               .write()
 
-            # await exec.exec('echo "|version|result|" >> $GITHUB_STEP_SUMMARY')
-            # await exec.exec('echo "|---|---|" >> $GITHUB_STEP_SUMMARY')
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
-              # const result = 
-              # await exec.exec('echo ${result}', ['>>', '$GITHUB_STEP_SUMMARY'])
               await core.summary
-                .addRaw("|${outputs.matrix.version}|${outputs.exportedValues}|")
+                .addRaw('|${outputs.matrix.version}|${outputs.exportedValues}|')
                 .write()
             }
   build150: 
