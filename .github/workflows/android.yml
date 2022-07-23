@@ -28,4 +28,4 @@ jobs:
         run: ./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "
       - id: build
         name: Build with Gradle
-        run: echo "::set-output name=duration::{{./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "}}"
+        run: echo "::set-output name=duration::${./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "}"
