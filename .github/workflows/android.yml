@@ -45,7 +45,14 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const result = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'')
+            const result = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e "s/^[^dm"]* //"')
             val data = process.env["result"]
             data[${{ matrix.version }}_${{ matrix.os}}] = result
             core.exportVariable(data)
+  report:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+        uses: actions/github-script@v6
+          script:
+            const data = process.env["result"]
