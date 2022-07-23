@@ -24,7 +24,7 @@ jobs:
         run: echo '::set-output name=result::${{ hashFiles('./matrix.txt') }}'
       - name: execute build
         run: |
-          echo `./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'` >> $RESULT
+          echo "RESULT=./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'" >> $GITHUB_ENV
       - if: always()
         id: generate-outputs
         uses: actions/github-script@v4
@@ -37,7 +37,7 @@ jobs:
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
 
-	          const exportedValues = $RESULT
+	          const exportedValues = { $RESULT }
 
             const outputs = { matrix, status, id, exportedValues }
 
