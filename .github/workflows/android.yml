@@ -51,9 +51,7 @@ jobs:
           echo '::set-output name=duration::${RESULT}'
   summary:
     runs-on: ubuntu-latest
-    needs:
-      build150
-      build1510
+    needs: [build150, build1510]
     steps:
       - name: make summary
         run: |
