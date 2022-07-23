@@ -80,7 +80,7 @@ jobs:
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
               const result = "|${outputs.matrix.version}|${outputs.exportedValues}|"
-              await exec.exec('echo ${result}', '>>', '$GITHUB_STEP_SUMMARY')
+              await exec.exec('echo ${result}', ['>>', '$GITHUB_STEP_SUMMARY'])
             }
   build150: 
       runs-on: ubuntu-latest
