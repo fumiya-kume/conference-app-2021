@@ -75,15 +75,13 @@ jobs:
             const directory = path.resolve('./build-outputs')
             const matchedOutputs = []
 
+            await exec.exec('echo "|version|result|" >> $GITHUB_STEP_SUMMARY')
+            await exec.exec('echo "|---|---|" >> $GITHUB_STEP_SUMMARY')
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
-              matchedOutputs.push(outputs)
+              await exec.exec('echo "|${outputs.matrix.version}|${outputs.exportedValues}|" >> $GITHUB_STEP_SUMMARY')
             }
-            await core.summary
-              .addTable([
-                [{data: 'version', header: true}, {data: 'duration', header: true}] + matchedOutputs
-                ]) 
   build150: 
       runs-on: ubuntu-latest
       outputs:
