@@ -73,7 +73,7 @@ jobs:
           script: |
             const fs = require('fs')
             const path = require('path')
-            const directory = if("${{outputs.matrix.os}}" == 'windows-latest'){
+            const directory = if("outputs.matrix.os" == 'windows-latest'){
                 path.resolve('.\matrix-job-outputs')
               }else{
                 path.resolve('./matrix-job-outputs')
