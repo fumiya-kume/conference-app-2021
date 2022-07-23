@@ -8,12 +8,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
         version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30, 1.5.31]
+        os: [ubuntu-latest, windows-latest]
     env:
       version: ${{ matrix.version }}
     steps:  
@@ -66,11 +67,11 @@ jobs:
             const fs = require('fs')
             const path = require('path')
             const directory = path.resolve('./matrix-job-outputs')
-            const matchedOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
+            const matchedOutputs = [[{data: 'version', header:true}, {data: 'os', header:true}, {data: 'result', header: true}]]
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
-              matchedOutputs.push([outputs.matrix.version, outputs.exportedValues])
+              matchedOutputs.push([outputs.matrix.version, outputs.matrix.os, outputs.exportedValues])
             }
             await core.summary
               .addTable(matchedOutputs)
