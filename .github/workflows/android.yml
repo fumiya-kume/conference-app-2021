@@ -35,8 +35,17 @@ jobs:
           cache: gradle
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - id: build
-        name: Build with Gradle
-        run: |
-          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
-          echo '|${{ matrix.version }}|${{ matrix.os }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY
+      # - id: build
+      #   name: Build with Gradle
+      #   run: |
+      #     RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
+      #     echo '|${{ matrix.version }}|${{ matrix.os }}|${RESULT}|' >> $GITHUB_STEP_SUMMARY
+      - if: always()
+        id: generate-outputs
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const result = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'')
+            val data = process.env["result"]
+            data[${{ matrix.version }}_${{ matrix.os}}] = result
+            core.exportVariable(data)
