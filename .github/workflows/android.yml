@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       version: ${{ matrix.version }}
-      result: {}
     steps:  
       - uses: actions/checkout@v3
       - name: set up JDK 11
@@ -40,8 +39,8 @@ jobs:
             const result = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e "s/^[^dm"]* //"')
             const data = process.env["result"]
             data["${{ matrix.version }}-${{ matrix.os}}"] = result
-            # core.exportVariable(data)
-            process.env["result"] = data
+            core.exportVariable('result' ,data)
+            # process.env["result"] = data
   report:
     needs: build
     runs-on: ubuntu-latest
