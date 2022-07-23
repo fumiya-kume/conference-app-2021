@@ -155,7 +155,7 @@ jobs:
           RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
   summary:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: [build150, build1510, build1520, build1521,  build1530, build1531, build1532]
     steps:
       - name: make summary
