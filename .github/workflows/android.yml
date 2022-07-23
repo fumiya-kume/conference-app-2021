@@ -25,7 +25,9 @@ jobs:
         run: chmod +x gradlew
       - id: build
         name: Build with Gradle
-        run: echo '::set-output name=duration::`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`'
+        run: |
+          RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in "`
+          echo '::set-output name=duration::${RESULT}'
   summary:
     runs-on: ubuntu-latest
     needs:
