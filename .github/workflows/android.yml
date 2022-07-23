@@ -46,7 +46,7 @@ jobs:
         with:
           script: |
             const result = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e "s/^[^dm"]* //"')
-            val data = process.env["result"]
+            const data = process.env["result"]
             data[${{ matrix.version }}_${{ matrix.os}}] = result
             core.exportVariable(data)
   report:
