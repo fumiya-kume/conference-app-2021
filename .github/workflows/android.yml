@@ -15,7 +15,6 @@ jobs:
             echo '|version|os|result|' >> $GITHUB_STEP_SUMMARY
             echo '|---|---|---|' >> $GITHUB_STEP_SUMMARY
   build:
-    runs-on: ${{ matrix.os }}
     continue-on-error: true
     strategy:
       fail-fast: false
@@ -23,6 +22,7 @@ jobs:
         version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30, 1.5.31, 1.5.32]
         os: [ubuntu_latest]
     needs: summary
+    runs-on: ${{ matrix.os }}
     env:
       version: ${{ matrix.version }}
     steps:  
