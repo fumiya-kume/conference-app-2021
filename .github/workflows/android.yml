@@ -10,7 +10,7 @@ jobs:
   build150: 
       runs-on: ubuntu-latest
       outputs:
-        output: ${{ steps.build.oututs.duration }}
+        output: ${{ steps.build.outputs.duration }}
       env:
         version: 1.5.0
       steps:
@@ -31,7 +31,7 @@ jobs:
   build1510: 
       runs-on: ubuntu-latest
       outputs:
-        output: ${{ steps.build.oututs.duration }}
+        output: ${{ steps.build.outputs.duration }}
       env:
         version: 1.5.10
       steps:
@@ -52,7 +52,7 @@ jobs:
   build1520: 
       runs-on: ubuntu-latest
       outputs:
-        output: ${{ steps.build.oututs.duration }}
+        output: ${{ steps.build.outputs.duration }}
       env:
         version: 1.5.20
       steps:
@@ -73,7 +73,7 @@ jobs:
   build1521: 
       runs-on: ubuntu-latest
       outputs:
-        output: ${{ steps.build.oututs.duration }}
+        output: ${{ steps.build.outputs.duration }}
       env:
         version: 1.5.21
       steps:
@@ -94,7 +94,7 @@ jobs:
   build1530: 
       runs-on: ubuntu-latest
       outputs:
-        output: ${{ steps.build.oututs.duration }}
+        output: ${{ steps.build.outputs.duration }}
       env:
         version: 1.5.30
       steps:
@@ -115,7 +115,7 @@ jobs:
   build1531: 
       runs-on: ubuntu-latest
       outputs:
-        output: ${{ steps.build.oututs.duration }}
+        output: ${{ steps.build.outputs.duration }}
       env:
         version: 1.5.31
       steps:
@@ -136,7 +136,7 @@ jobs:
   build1532: 
       runs-on: ubuntu-latest
       outputs:
-        output: ${{ steps.build.oututs.duration }}
+        output: ${{ steps.build.outputs.duration }}
       env:
         version: 1.5.32
       steps:
