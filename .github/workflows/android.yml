@@ -34,7 +34,6 @@ jobs:
       - id: build
         name: Build with Gradle
         run: |
-          # RESULT=`./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           RESULT=`./gradlew tasks --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'`
           echo "::set-output name=duration::${RESULT}"
       - if: always()
@@ -72,7 +71,7 @@ jobs:
                 .every(k => (k in parent) && (child[k] === parent[k]))
             }
 
-            const directory = path.resolve('./build-outputs')
+            const directory = path.resolve('./matrix-job-outputs')
             const matchedOutputs = []
 
             await exec.exec('echo "|version|result|" >> $GITHUB_STEP_SUMMARY')
