@@ -37,11 +37,11 @@ jobs:
             const outputs = { matrix, status, id, exportedValues }
 
             fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
-      - if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: outputs-${{ steps.generate-unique-id.outputs.result }}
-          path: ${{ github.workspace }}/outputs.txt
+    - if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: outputs-${{ steps.generate-unique-id.outputs.result }}
+        path: ${{ github.workspace }}/outputs.txt
   build150: 
       runs-on: ubuntu-latest
       outputs:
