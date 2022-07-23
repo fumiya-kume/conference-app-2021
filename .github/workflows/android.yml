@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       uses: actions/github-script@v6
-        with:
-          script: |
-            const data = process.env["result"]
-            console.log(data)
+      with:
+        script: |
+          const data = process.env["result"]
+          console.log(data)
