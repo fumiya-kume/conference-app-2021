@@ -17,6 +17,7 @@ jobs:
     env:
       version: ${{ matrix.version }}
     steps:  
+      - uses: actions/checkout@v3
       - if: always()
         run: echo '${{ toJSON(matrix) }}' > ./matrix.txt
       - if: always()
