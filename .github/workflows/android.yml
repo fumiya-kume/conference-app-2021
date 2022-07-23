@@ -29,13 +29,13 @@ jobs:
         id: generate-outputs
         uses: actions/github-script@v6
         with:
-          script: echo "hello"
-            #const fs = require('fs')
-            #const exec = require('@actions/exec')
-            #const id = "${{ steps.generate-unique-id.outputs.result }}"
-            #const matrix = ${{ toJSON(matrix) }}
-            #const status = "${{ job.status }}"
-	          #const exportedValues = exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //')
+          script: |
+            const fs = require('fs')
+            const exec = require('@actions/exec')
+            const id = "${{ steps.generate-unique-id.outputs.result }}"
+            const matrix = ${{ toJSON(matrix) }}
+            const status = "${{ job.status }}"
+	          const exportedValues = exec.exec("./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //")
             #const outputs = { matrix, status, id, exportedValues }
             #fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
       - if: always()
