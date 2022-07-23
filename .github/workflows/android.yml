@@ -31,7 +31,7 @@ jobs:
             const id = "${{ steps.generate-unique-id.outputs.result }}"
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
-            const exportedValues = exec.exec("./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //")
+            const exportedValues = await exec.exec("./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //")
             const outputs = { matrix, status, id, exportedValues }
             fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
       - if: always()
