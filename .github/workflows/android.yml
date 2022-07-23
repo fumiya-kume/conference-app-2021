@@ -15,6 +15,7 @@ jobs:
             echo '|version|os|result|' >> $GITHUB_STEP_SUMMARY
             echo '|---|---|---|' >> $GITHUB_STEP_SUMMARY
   build:
+    needs: summary
     strategy:
       fail-fast: false
       matrix:
