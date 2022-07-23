@@ -35,7 +35,7 @@ jobs:
             const status = "${{ job.status }}"
             
 
-	          const exportedValues = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //'');
+	          const exportedValues = await exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //');
 
             const outputs = { matrix, status, id, exportedValues }
 
