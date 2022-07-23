@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build1.5.0: 
+  build150: 
       runs-on: ubuntu-latest
       outputs:
         output: ${{ steps.build.oututs.duration }}
@@ -31,10 +31,10 @@ jobs:
   summary:
     runs-on: ubuntu-latest
     needs:
-      build15
+      build150
     steps:
       - name: make summary
         run: |
           echo '|version|result|' >> $GITHUB_STEP_SUMMARY
           echo '|---|---|' >> $GITHUB_STEP_SUMMARY
-          echo '|1.5.0|${{needs.build15.outputs.output}}|' >> $GITHUB_STEP_SUMMARY
+          echo '|1.5.0|${{needs.build150.outputs.output}}|' >> $GITHUB_STEP_SUMMARY
