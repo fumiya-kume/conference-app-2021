@@ -33,6 +33,6 @@ jobs:
     steps:
       - name: make summary
         run: |
-          echo '|version|result|' >>  >> $GITHUB_STEP_SUMMARY
+          echo '|version|result|' >> $GITHUB_STEP_SUMMARY
           echo '|---|---|' >>  >> $GITHUB_STEP_SUMMARY
           echo '|1.5.0|${{needs.build15.outputs.output}}|' >>  >> $GITHUB_STEP_SUMMARY
