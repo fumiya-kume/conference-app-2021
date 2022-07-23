@@ -25,4 +25,4 @@ jobs:
         run: chmod +x gradlew
       - id: build
         name: Build with Gradle
-        run: ./gradlew buildDebug
+        run: ./gradlew buildDebug --profile
