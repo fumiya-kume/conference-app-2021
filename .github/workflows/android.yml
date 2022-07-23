@@ -32,8 +32,8 @@ jobs:
       - if: always()
         id: generate-unique-id
         run: echo '::set-output name=result::${{ hashFiles('./matrix.txt') }}'
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+      # - name: Setup Gradle
+      #   uses: gradle/gradle-build-action@v2
       - id: build
         name: Build with Gradle
         shell: bash
