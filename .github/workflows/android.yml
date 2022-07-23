@@ -37,11 +37,11 @@ jobs:
             const matrix = ${{ toJSON(matrix) }}
             const status = "${{ job.status }}"
 
-	          const exportedValues = exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //')
+	          #const exportedValues = exec.exec('./gradlew buildDebug --profile | grep "BUILD SUCCESSFUL in " | sed -e 's/^[^dm"]* //')
 
-            const outputs = { matrix, status, id, exportedValues }
+            #const outputs = { matrix, status, id, exportedValues }
 
-            fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
+            #fs.writeFileSync("${{ github.workspace }}/outputs.txt", JSON.stringify(outputs))
       - if: always()
         uses: actions/upload-artifact@v2
         with:
