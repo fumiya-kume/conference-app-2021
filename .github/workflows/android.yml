@@ -7,12 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  summary:
-      runs-on: ubuntu-latest
-      steps:
-
   build:
-    needs: summary
     strategy:
       fail-fast: false
       matrix:
