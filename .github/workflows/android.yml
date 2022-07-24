@@ -13,8 +13,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30, 1.5.31, 1.5.32, 1.6.0, 1.6.10, 1.6.20, 1.6.21, 1.7.0, 1.7.10]
+        kotlin_version: [1.5.0, 1.5.10, 1.5.20, 1.5.21, 1.5.30, 1.5.31, 1.5.32, 1.6.0, 1.6.10, 1.6.20, 1.6.21, 1.7.0, 1.7.10]
         os: [ubuntu-latest, windows-latest, macos-latest]
+        compose_version: [1.0.0-alpha04, 1.0.0-beta07]
     env:
       version: ${{ matrix.version }}
     steps:  
@@ -32,8 +33,6 @@ jobs:
       - if: always()
         id: generate-unique-id
         run: echo '::set-output name=result::${{ hashFiles('./matrix.txt') }}'
-      # - name: Setup Gradle
-      #   uses: gradle/gradle-build-action@v2
       - id: build
         name: Build with Gradle
         shell: bash
@@ -73,7 +72,7 @@ jobs:
           script: |
             const fs = require('fs')
             const path = require('path')
-            const directory = if(outputs.matrix.os == 'windows-latest'){
+            const directory = if("${{ runner.os }}" == 'windows-latest'){
                 path.resolve('.\matrix-job-outputs')
               }else{
                 path.resolve('./matrix-job-outputs')
@@ -88,13 +87,13 @@ jobs:
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
-              matchedOutputs.push([outputs.matrix.version, outputs.matrix.os, outputs.exportedValues])
+              matchedOutputs.push([outputs.matrix.kotlin_version, outputs.matrix.os, outputs.exportedValues])
               if(outputs.matrix.os == 'ubuntu-latest'){
-                linuxOutputs.push([outputs.matrix.version, outputs.exportedValues])
+                linuxOutputs.push([outputs.matrix.kotlin_version, outputs.exportedValues])
               }else if(outputs.matrix.os == 'macos-latest'){
-                macosOutputs.push([outputs.matrix.version, outputs.exportedValues])
+                macosOutputs.push([outputs.matrix.kotlin_version, outputs.exportedValues])
               }else if(outputs.matrix.os == 'windows-latest'){
-                windowsOutputs.push([outputs.matrix.version, outputs.exportedValues])
+                windowsOutputs.push([outputs.matrix.kotlin_version, outputs.exportedValues])
             }
             await core.summary
               .addTable(matchedOutputs)
