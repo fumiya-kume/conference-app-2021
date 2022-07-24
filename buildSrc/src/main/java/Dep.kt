@@ -1,7 +1,7 @@
 package io.github.droidkaigi.feeder
 
 object Versions {
-    const val compose = "1.1.0-beta01"
+    val compose = System.getenv("compose_version") ?: "1.1.0-beta01"
     const val coroutines = "1.5.0-native-mt"
 }
 
@@ -53,10 +53,11 @@ object Dep {
     }
 
     object Kotlin {
-        val bom = "org.jetbrains.kotlin:kotlin-bom:${System.getenv("version") ?: "1.5.31"}"
+        val bom = "org.jetbrains.kotlin:kotlin-bom:${System.getenv("kotlin_version") ?: "1.5.31"}"
 
         // bom import does not working...
-        val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${System.getenv("compose_version") ?: "1.5.31"}"
+        val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${System.getenv("kotlin_version") ?:
+        "1.5.31"}"
         const val serializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:1.5.31"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib"
         const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31"
