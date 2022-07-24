@@ -11,18 +11,18 @@ object Dep {
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
         const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta01"
-        const val livedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
-        const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
-        const val foundation = "androidx.compose.foundation:foundation:${Versions.compose}"
-        const val layout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
-        const val ui = "androidx.compose.ui:ui:${Versions.compose}"
-        const val test = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
-        const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
-        const val util = "androidx.compose.ui:ui-util:${Versions.compose}"
-        const val material = "androidx.compose.material:material:${Versions.compose}"
-        const val iconsExtended =
+        val livedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+        val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
+        val foundation = "androidx.compose.foundation:foundation:${Versions.compose}"
+        val layout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
+        val ui = "androidx.compose.ui:ui:${Versions.compose}"
+        val test = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
+        val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+        val util = "androidx.compose.ui:ui-util:${Versions.compose}"
+        val material = "androidx.compose.material:material:${Versions.compose}"
+        val iconsExtended =
             "androidx.compose.material:material-icons-extended:${Versions.compose}"
-        const val animation = "androidx.compose.animation:animation:${Versions.compose}"
+        val animation = "androidx.compose.animation:animation:${Versions.compose}"
         const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
     }
 
