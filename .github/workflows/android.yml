@@ -73,11 +73,7 @@ jobs:
           script: |
             const fs = require('fs')
             const path = require('path')
-            const directory = if("${{ runner.os }}" == 'windows-latest'){
-                path.resolve('.\matrix-job-outputs')
-              }else{
-                path.resolve('./matrix-job-outputs')
-              }
+            const directory = path.resolve('./matrix-job-outputs')
               
             const matchedOutputs = [[{data: 'version', header:true}, {data: 'os', header:true}, {data: 'result', header: true}]]
 
