@@ -76,12 +76,12 @@ jobs:
 
             const linuxOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
             const macosOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
-            const windowsOutputs = [[{data: 'version', header:true}, {data: 'result', header: true}]]
 
             for (const dirName of fs.readdirSync(directory)) {
               const filePath = path.join(directory, dirName, 'outputs.txt')
               const outputs = JSON.parse(fs.readFileSync(filePath))
               matchedOutputs.push([outputs.matrix.kotlin_version, outputs.matrix.os, outputs.exportedValues])
+
               if(outputs.matrix.os == 'ubuntu-latest'){
                 linuxOutputs.push([outputs.matrix.kotlin_version, outputs.exportedValues])
               }else if(outputs.matrix.os == 'macos-latest'){
@@ -98,8 +98,4 @@ jobs:
 
             await core.summary
               .addTable(macosOutputs)
-              .write()
-
-            await core.summary
-              .addTable(windowsOutputs)
               .write()
