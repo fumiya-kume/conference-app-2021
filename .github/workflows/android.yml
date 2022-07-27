@@ -89,8 +89,7 @@ jobs:
                 linuxOutputs.push([outputs.matrix.kotlin_version, outputs.exportedValues])
               }else if(outputs.matrix.os == 'macos-latest'){
                 macosOutputs.push([outputs.matrix.kotlin_version, outputs.exportedValues])
-              }else if(outputs.matrix.os == 'windows-latest'){
-                windowsOutputs.push([outputs.matrix.kotlin_version, outputs.exportedValues])
+              }
             }
             await core.summary
               .addTable(matchedOutputs)
