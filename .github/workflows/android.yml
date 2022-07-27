@@ -17,7 +17,8 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         compose_version: [1.0.0-alpha04, 1.0.0-beta07, 1.0.1, 1.1.0, 1.1.1]
     env:
-      version: ${{ matrix.version }}
+      kotlin_version: ${{ matrix.kotlin_version }}
+      compose_version: ${{ matrix.compose_version }}
     steps:  
       - uses: actions/checkout@v3
       - name: set up JDK 11
